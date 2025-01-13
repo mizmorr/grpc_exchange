@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package currencyexchange;
 
-option go_package = "github.com/mizmorr/grps_exchange";
+option go_package = "github.com/mizmorr/grpc_exchange";
 
 // CurrencyExchangeService defines methods for currency exchange operations.
 service CurrencyExchangeService {
