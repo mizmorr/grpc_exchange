@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package currencyexchange;
+
+option go_package = "github.com/mizmorr/grps_exchange";
+
+// CurrencyExchangeService defines methods for currency exchange operations.
+service CurrencyExchangeService {
+    // GetAllRates retrieves exchange rates for all supported currencies.
+    rpc GetAllRates (EmptyRequest) returns (ExchangeRatesResponse);
+
+    // GetRate retrieves the exchange rate for a specific currency.
+    rpc GetSpecificRate (CurrencyRequest) returns (ExchangeRateResponse);
+}
+
+// EmptyRequest is used for methods that do not require input parameters.
+message EmptyRequest {}
+
+// CurrencyRequest contains the code of the currency whose rate is requested.
+message CurrencyRequest {
+    string currency_code = 1;
+}
+
+// ExchangeRatesResponse contains a list of exchange rates.
+message ExchangeRatesResponse {
+    repeated ExchangeRate rates = 1; // List of exchange rates
+}
+
+// ExchangeRateResponse contains the exchange rate for a specific currency.
+message ExchangeRateResponse {
+    string currency_code = 1;
+    double rate = 2;
+}
+
+// ExchangeRate represents the exchange rate for a currency.
+message ExchangeRate {
+    string currency_code = 1;
+    double rate = 2;
+}
